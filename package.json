@@ -8,10 +8,11 @@
     "@testing-library/user-event": "^7.1.2",
     "@types/jest": "^24.0.0",
     "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "react": "^16.13.1",
+    "react-bootstrap-sweetalert": "^5.1.11",
     "react-dom": "^16.13.1",
+    "react-lottie": "^1.2.3",
     "react-scripts": "3.4.1",
     "typescript": "~3.7.2"
   },
@@ -19,7 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "init:tailwind": "tailwindcss build src/base.css -o src/style.css"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,5 +37,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.36",
+    "@types/react-lottie": "^1.2.5",
+    "tailwindcss": "^1.4.6"
   }
 }
