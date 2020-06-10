@@ -1,8 +1,10 @@
 import * as React from "react";
-import SweetAlert from "react-bootstrap-sweetalert";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import Lottie from "react-lottie";
 import animationData from "./433-checked-done.json";
 
+const MySwal = withReactContent(Swal);
 interface Todo {
   id: number;
   value: string;
@@ -10,9 +12,6 @@ interface Todo {
 
 const App: React.FC = () => {
   const [todo, setTodo] = React.useState<Todo[]>([]);
-  const [successConfirmation, setSuccessConfirmation] = React.useState<boolean>(
-    false
-  );
 
   const defaultOptions = {
     loop: false,
@@ -30,9 +29,18 @@ const App: React.FC = () => {
         ...todo,
         { id: Math.random(), value: e.target.todo_input.value },
       ]);
-      setSuccessConfirmation(!successConfirmation);
       const myForm = document.getElementById("todo_form") as HTMLFormElement;
       myForm.reset();
+
+      MySwal.fire({
+        timer: 3000,
+        html: (
+          <div className="-mt-20 mb-1">
+            <Lottie options={defaultOptions} width={300} />
+            <h1 className="-mt-20 font-bold text-xl">SUCCESS</h1>
+          </div>
+        ),
+      });
     } catch (error) {
       console.log(error);
     }
@@ -85,25 +93,6 @@ const App: React.FC = () => {
               );
             })}
         </div>
-        <SweetAlert
-          title=""
-          show={successConfirmation}
-          onConfirm={() => setSuccessConfirmation(!successConfirmation)}
-          customButtons={
-            <button
-              type="button"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              onClick={() => setSuccessConfirmation(!successConfirmation)}
-            >
-              Okay
-            </button>
-          }
-        >
-          <div className="-mt-20 mb-1">
-            <Lottie options={defaultOptions} width={300} />
-            <h1 className="-mt-20 font-bold text-xl">SUCCESS</h1>
-          </div>
-        </SweetAlert>
       </div>
     </div>
   );
